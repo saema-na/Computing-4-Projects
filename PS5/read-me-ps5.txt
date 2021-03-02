@@ -1,0 +1,118 @@
+/**********************************************************************
+ *  readme.txt template                                                   
+ *  Markov Model
+ **********************************************************************/
+
+Name: Saema Nazar
+
+Hours to complete assignment: ~8-10
+/**********************************************************************
+ *  Briefly discuss the assignment itself and what you accomplished.
+ **********************************************************************/
+This program creates a Markov Model of a given order and is able to create
+output from the given string by calculating the frequencies of the letters
+following each kgram. Generates random characters based on the probabilities
+of each k+1 and produces a string.
+
+
+  /**********************************************************************
+ *  Discuss one or more key algorithms, data structures, or 
+ *  OO designs that were central to the assignment.
+ **********************************************************************/
+The class MModel holds the methods that implement this program. Usage of classes allows for modularity
+and abstraction of data from the user, which are critical to OOP.
+
+I used a map to store the Symbol Table for the kgrams and the k+1 characters, it was declared as follows:
+map<string kgram, multiset<char>> symTab;
+	-the string holds the kgram, and it is the key. The multiset holds a list of the the characters
+	that follow that associated kgram. The multiset acts as the value in this key/value pairing.
+
+
+
+/**********************************************************************
+ *  Briefly explain the workings of the features you implemented.
+ *  Include code excerpts.
+ **********************************************************************/
+-the constructor iterates through the input text and creates k-length kgrams. The kgrams are 
+inserted into the map and the k+1 characters are inserted into their associated kgrams'
+multisets.
+-the freq(string kgram) returns the size of the kgram's associated multiset because this indicates 
+how many occurences of the kgram there are in the string.
+- freq(string kgram, char c) calls .count(c) on the kgram's associated multiset and returns the number of
+times char c appears in the text.
+	ex.) auto p = symTab.find(kgram);
+	    return p->second.count(c);
+- in kRand(string kgram), a random number is generated and then modded by the frequency of the kgram argument's multiset. 
+this generates a random char based on its freqency in the multiset.
+	ex.)  int ranIndex = (unsigned)(rand() % freq(kgram));
+-in generate, kRand() is called and a string is generated based on the starting kGram and its following
+k+1's
+
+
+
+
+/**********************************************************************
+ *  Did you complete the whole assignment?
+ *  Successfully or not? 
+ *  Indicate which parts you think are working, and describe
+ *    how you know that they're working.
+ **********************************************************************/
+The only portion of the assignment I have not implemented yet is the
+TextGenerator. Everything else is implemented including the boost tests.
+I know everything works because the boost tests all pass and the program
+produces the intended outputs.
+I also verified that my code passed all cpplint style guidelines.
+
+/**********************************************************************
+ *  Does your implementation pass the unit tests?
+ *  Indicate yes or no, and explain how you know that it does or does not.
+ **********************************************************************/
+Yes, my implementation passes all of the boost tests and exceptions are working
+as expected.
+I tested my implementation in the boost tests, by creating test objects and verifying that
+the functions returned all expected values.
+
+
+ /**********************************************************************
+ *  Describe where you used exceptions. 
+ *  Provide files and lines of the code.
+ ***********************************************************************/
+I implemented exceptions everywhere that the assignment PDF specified. They are
+all located in MModel.cpp. The following functions have exceptions:
+- MModel(std::string text, int k);
+- int (std::string kgram) const;
+- int freq(std::string kgram, char c) const;
+- char kRand(std::string kgram);
+- string generate(std::string kgram, int L);
+
+All exceptions in these functions are to either: 
+- verify that the kgram exists in the map
+- verify the length of k is shorter than the input text length
+- verify kGram length is == to the orderK
+
+ /**********************************************************************
+ *  Describe where you used lambda expression if any
+ *  Provide files and lines of the code.
+ ***********************************************************************/
+I implemented a lambda expression in my constructor, in file MModel.cpp around 
+line 15 or 16. The expression returns a value to indicate if the length of the given
+text is less than K. The return value of this lambda expression is used in the 
+if-statement to decide whether an exception should be thrown.
+
+
+/**********************************************************************
+ *  List whatever help (if any) you received from lab TAs,
+ *  classmates, or anyone else.
+ **********************************************************************/
+cpp reference websites, class slides, stackoverflow
+
+
+/**********************************************************************
+ *  Describe any serious problems you encountered.                    
+ **********************************************************************/
+nothing serious
+
+
+/**********************************************************************
+ *  List any other comments here.                                     
+ **********************************************************************/
