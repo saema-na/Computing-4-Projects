@@ -1,6 +1,4 @@
-// Dr. Rykalova
-// test.cpp for PS1a
-// updated 1/31/2020
+// Boost Tests 
 
 #include <iostream>
 #include <string>
