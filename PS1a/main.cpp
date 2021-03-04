@@ -1,3 +1,5 @@
+// Copyright 2020 Saema Nazar
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -14,12 +16,6 @@ int main(int argc, char* argv[]){
     bit.step();
   }
   
-  
-  //  cout<<"Generate function output: "<<bit.generate(5)<<endl;
-  // cout<<"Gen Func output 2: "<<bit.generate(5)<<endl;
-  
-  
   return 0;
-
 
 }
